@@ -17,10 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-    Route::resource('absensi', 'AbsensiController')->middleware('auth');
-    Route::resource('kerjaan', 'KerjaanController')->middleware('auth');
-    Route::get('/laporan', 'UserController@index')->middleware('auth'); 
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::resource('absensi', 'AbsensiController');
+    Route::resource('kerjaan', 'KerjaanController');
+    
+    Route::get('/laporan', 'LaporanController@index'); 
+});
+
+
+
+
