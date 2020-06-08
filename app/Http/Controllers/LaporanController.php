@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
-    public function index(Type $var = null)
+    public function index()
     {
-        return 'laporan';
+        return view('laporan');
     }
 }

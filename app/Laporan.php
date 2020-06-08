@@ -22,7 +22,7 @@ class Laporan extends Model
 
     public function kerjaan()
     {
-        return $this->belongsTo('App\laporan', 'kerjaan_id', 'id');
+        return $this->belongsTo('App\Laporan', 'kerjaan_id', 'id');
     }
 
 }

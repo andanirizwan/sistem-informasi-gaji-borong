@@ -13,7 +13,7 @@ class KerjaanController extends Controller
      */
     public function index()
     {
-        //
+        return view('kerjaan');
     }
 
     /**
@@ -23,7 +23,7 @@ class KerjaanController extends Controller
      */
     public function create()
     {
-        //
+        return view('create_kerjaan');
     }
 
     /**
