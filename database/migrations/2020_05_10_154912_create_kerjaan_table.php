@@ -15,9 +15,13 @@ class CreateKerjaanTable extends Migration
     {
         Schema::create('kerjaan', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('qty');
             $table->string('barang');
+            $table->string('qty');
             $table->string('harga');
+            $table->string('gaji');
+            $table->string('insentif')->nullable($value = true)	;
+            $table->string('foto');
+            $table->string('status')->default('0');
             $table->timestamps();
 
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');

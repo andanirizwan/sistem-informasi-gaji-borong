@@ -8,7 +8,7 @@
     <div class="d-sm-none d-lg-inline-block">Hi, John Doe</div></a>
     <div class="dropdown-menu dropdown-menu-right">
       <div class="dropdown-title">Welcome, John Doe</div>
-      <a href="#" class="dropdown-item has-icon">
+      <a href="/profile" class="dropdown-item has-icon">
         <i class="far fa-user"></i> Profile Settings
       </a>
       <div class="dropdown-divider"></div>
@@ -21,10 +21,6 @@
       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf
       </form>
-
-      {{-- <a href="#" class="dropdown-item has-icon text-danger">
-        <i class="fas fa-sign-out-alt"></i> Logout
-      </a> --}}
       
     </div>
   </li>

@@ -16,7 +16,6 @@ class CreateAbsensiTable extends Migration
         Schema::create('absensi', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->time('jam_masuk', 0);
-            $table->time('jam_keluar', 0);
             $table->date('waktu');
             $table->timestamps();
 
