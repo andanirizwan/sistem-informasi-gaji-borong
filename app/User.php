@@ -39,10 +39,10 @@ class User extends Authenticatable
 
     public function absensi()
     {
-        return $this->hasMany('App\Absensi', 'absensi_id', 'id');
+        return $this->hasOne('App\Absensi', 'absensi_id', 'id');
     }
     public function kerjaan()
     {
-        return $this->hasMany('App\Kerjaan', 'kerjaan_id', 'id');
+        return $this->hasOne('App\Kerjaan', 'kerjaan_id', 'id');
     }
 }

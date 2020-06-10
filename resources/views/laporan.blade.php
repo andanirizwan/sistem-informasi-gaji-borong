@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Laporan Kerjaan</div>
+                <div class="card-header">Kerjaan</div>
 
                 <div class="card-body">
 
@@ -14,23 +14,32 @@
                       <th>No</th>
                       <th>foto</th>
                       <th>barang</th>
+                      <th>jenis sablon</th>
                       <th>qty</th>
                       <th>harga</th>
-                      <th>tanggal</th>
                       <th>gaji</th>
-                      <th>bonus</th>
+                      <th>insentif</th>
+                      <th>#</th>
                     </tr>
+
+                    @php
+                      $i=1
+                    @endphp
+                    @foreach ($laporan as $laporans)
+                    
+
                     <tr>
-                      <th>1</th>
-                      <th><img src="" alt=""></th>
-                      <th>sablon plastik</th>
-                      <th>1 dus</th>
-                      <th>Rp. 500</th>
-                      <th>01-01-2020</th>
-                      <th>Rp. 500.000</th>
-                      <th><div class="badge badge-success">Rp. 100.000</div></th>
+                      <th>{{$i++}}</th>
+                      <th><img src="{{asset('storage/'.$laporans->foto)}}" alt="" width="50px" height="50px"></th>
+                      <th>{{$laporans->barang}}</th>
+                      <th>{{$laporans->jenis}}</th>
+                      <th>{{$laporans->qty}}</th>
+                      <th>Rp. {{$laporans->harga}}</th>
+                      <th>{{$laporans->gaji}}</th>
+                      <th><div class="badge badge-success">{{$laporans->insentif}}</div></th>
                     </tr>
-                    <tr>
+                        
+                    @endforeach
 
                   </tbody>
                 </table>

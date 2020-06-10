@@ -16,6 +16,7 @@ class CreateKerjaanTable extends Migration
         Schema::create('kerjaan', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('barang');
+            $table->string('jenis');
             $table->string('qty');
             $table->string('harga');
             $table->string('gaji');

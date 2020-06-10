@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\Absensi;
+use App\User;
 
 class AbsensiController extends Controller
 {
@@ -13,7 +17,8 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        return view('absensi');
+        $absensi = Absensi::all();
+        return view('absensi', ['absensi'=>$absensi]);
     }
 
     /**
@@ -23,7 +28,7 @@ class AbsensiController extends Controller
      */
     public function create()
     {
-        //
+            //
     }
 
     /**
@@ -33,8 +38,19 @@ class AbsensiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {     
+        $user_id = Auth::user()->id;
+        
+            $absensi = new Absensi;
+            $absensi->jam_masuk = $request->jam_masuk;
+            $absensi->waktu = $request->waktu;
+            $absensi->user_id = $user_id;
+
+            $absensi->save();
+            return redirect('/home');
+  
+            
+            
     }
 
     /**

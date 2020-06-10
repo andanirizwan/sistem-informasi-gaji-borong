@@ -11,16 +11,23 @@
 
                   <table class="table table-bordered table-md">
                     <tbody><tr>
-                      <th>No</th>
-                      <th>Jam Masuk</th>
+                      
                       <th>Tanggal</th>
+                      <th>Jam Masuk</th>
+                      <th>Status</th>
                     </tr>
+                    
+                    @foreach ($absensi as $absensis)
                     <tr>
-                      <td>1</td>
-                      <td>07:00</td>
-                      <td>2017-01-09</td>
+                      
+                          
+                      <td>{{$absensis->waktu}}</td>
+                      <td>{{$absensis->jam_masuk}}</td>
+                      <td><div class="badge badge-info">Masuk</div></td>
+                      
                     </tr>
-                    <tr>
+                    @endforeach
+                    
 
                   </tbody>
                 </table>

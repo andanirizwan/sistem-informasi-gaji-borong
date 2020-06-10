@@ -14,19 +14,29 @@
                       <th>No</th>
                       <th>foto</th>
                       <th>barang</th>
+                      <th>jenis sablon</th>
                       <th>qty</th>
                       <th>harga</th>
                       <th>#</th>
                     </tr>
+
+                    @php
+                      $i=1
+                    @endphp
+                    @foreach ($kerjaan as $kerjaans)
+                    
+
                     <tr>
-                      <th>1</th>
-                      <th><img src="" alt=""></th>
-                      <th>sablon plastik</th>
-                      <th>1 dus</th>
-                      <th>Rp. 500</th>
+                      <th>{{$i++}}</th>
+                      <th><img src="{{asset('storage/'.$kerjaans->foto)}}" alt="" width="50px" height="50px"></th>
+                      <th>{{$kerjaans->barang}}</th>
+                      <th>{{$kerjaans->jenis}}</th>
+                      <th>{{$kerjaans->qty}}</th>
+                      <th>Rp. {{$kerjaans->harga}}</th>
                       <th><a href="#" class="btn btn-info">Pilih</a></th>
                     </tr>
-                    <tr>
+                        
+                    @endforeach
 
                   </tbody>
                 </table>

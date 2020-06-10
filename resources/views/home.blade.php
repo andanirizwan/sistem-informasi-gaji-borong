@@ -63,16 +63,18 @@
                 
                     <div class="row">
 
-                        <form class="form-inline">
-                            <label class="sr-only" for="inlineFormInputName2">Name</label>
-                            <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" disabled>
-      
-                            <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+                        <form class="form-inline" method="POST" action="{{route('absensi.store')}}">
+                            @php
+                                date_default_timezone_set("Asia/Bangkok");
+                            @endphp
+                          <input type="date" class="form-control mb-2 mr-sm-2" name="waktu" value="{{ date('Y-m-d') }}"  readonly>
+
                             <div class="input-group mb-2 mr-sm-2">
-                              <input type="time" class="form-control" id="inlineFormInputGroupUsername2" disabled>
+                              <input type="text" class="form-control" name="jam_masuk" value="{{ date('H:i:s') }}" readonly>
                             </div>
-                            <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                          </form>
+                            <button class="btn btn-primary mr-1" type="submit">Submit</button>  
+                            @csrf
+                        </form>
                             
                     </div>
 
