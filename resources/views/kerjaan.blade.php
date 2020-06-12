@@ -9,6 +9,11 @@
 
                 <div class="card-body">
 
+                @if (Auth::user()->role == 'admin')
+                  <a href="{{route('kerjaan.create')}}" class="btn btn-info">Tambah Kerjaan</a><br>
+                @endif
+                  
+
                   <table class="table table-bordered table-md">
                     <tbody><tr>
                       <th>No</th>
@@ -33,13 +38,31 @@
                       <th>{{$kerjaans->jenis}}</th>
                       <th>{{$kerjaans->qty}}</th>
                       <th>Rp. {{$kerjaans->harga}}</th>
-                      <th><a href="#" class="btn btn-info">Pilih</a></th>
+                      <th>
+                      
+                      <a href="kerjaan/{{$kerjaans->id}}" class="btn btn-info"
+                          onclick="event.preventDefault();
+                                      document.getElementById('update-form').submit();">
+                           Pilih <i class="fas fa-sign-in-alt"></i>
+                        </a>
+
+                        <form id="update-form" action="kerjaan/{{$kerjaans->id}}" method="GET">
+                          
+                        </form>
+                        
+                      </th>
                     </tr>
                         
                     @endforeach
 
                   </tbody>
                 </table>
+
+                @if (session('alert'))
+                          <div class="alert alert-info">
+                              {{ session('alert') }}
+                          </div>
+                @endif
 
                 </div>
             </div>

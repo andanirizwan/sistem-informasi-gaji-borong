@@ -31,7 +31,7 @@
                   </div>
                   <div class="form-group">
                     <label>Harga :</label>
-                    <input type="text" class="form-control" name="harga">
+                    <input type="text" class="form-control" name="harga" required>
                   </div>
                   @csrf
                   <button class="btn btn-primary mr-1" type="submit">Submit</button>

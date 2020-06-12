@@ -17,7 +17,9 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $absensi = Absensi::all();
+        $id = Auth::user()->id;
+
+        $absensi = Absensi::where('user_id',$id)->get();
         return view('absensi', ['absensi'=>$absensi]);
     }
 
@@ -40,15 +42,21 @@ class AbsensiController extends Controller
     public function store(Request $request)
     {     
         $user_id = Auth::user()->id;
-        
+
+        $cek = Absensi::where('waktu', $request->waktu)->where('user_id', $user_id)->get()->first();
+
+        if ($cek == true) {
+            return redirect('/home')->with('alert', 'anda sudah absen hari ini');
+        } else {
+
             $absensi = new Absensi;
             $absensi->jam_masuk = $request->jam_masuk;
             $absensi->waktu = $request->waktu;
             $absensi->user_id = $user_id;
 
             $absensi->save();
-            return redirect('/home');
-  
+            return redirect('/home')->with('alert', 'absen berhasil');
+        }  
             
             
     }

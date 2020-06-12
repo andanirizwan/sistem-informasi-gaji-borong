@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\Kerjaan;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $id = Auth::user()->id;
+
+        $kerjaan = Kerjaan::where('status', 0)->get();
+        $kerjaan2 = Kerjaan::where('status', 1)->where('user_id',$id)->get();
+        return view('home', ['kerjaan'=>$kerjaan, 'kerjaan2'=>$kerjaan2]);
     }
 }

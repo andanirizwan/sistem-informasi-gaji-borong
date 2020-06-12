@@ -5,9 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Kerjaan</div>
+                <div class="card-header">Laporan Kerjaan</div>
 
                 <div class="card-body">
+                
+                  <form class="form-inline" method="GET" action="/laporan">
+                    <input type="date" class="form-control mb-2 mr-sm-2" name="waktu1" >
+                    <input type="date" class="form-control mb-2 mr-sm-2" name="waktu2" >
+
+                    <button class="btn btn-primary mr-1" type="submit">Filter</button>  
+                    
+                  </form><br>
 
                   <table class="table table-bordered table-md">
                     <tbody><tr>
@@ -35,14 +43,26 @@
                       <th>{{$laporans->jenis}}</th>
                       <th>{{$laporans->qty}}</th>
                       <th>Rp. {{$laporans->harga}}</th>
-                      <th>{{$laporans->gaji}}</th>
-                      <th><div class="badge badge-success">{{$laporans->insentif}}</div></th>
+                      <th>Rp. {{$laporans->gaji}}</th>
+                      <th><div class="badge badge-success">Rp. {{$laporans->insentif}}</div></th>
+
                     </tr>
                         
                     @endforeach
 
                   </tbody>
                 </table>
+
+                @isset($total)
+                  <h3 class="text text-right">Total Gaji = Rp. {{$total}}</h3>
+                @endisset
+
+
+                @if (session('alert'))
+                  <div class="alert alert-info">
+                      {{ session('alert') }}
+                  </div>
+                @endif
 
                 </div>
             </div>

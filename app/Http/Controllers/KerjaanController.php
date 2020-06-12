@@ -17,7 +17,7 @@ class KerjaanController extends Controller
      */
     public function index()
     {
-        $kerjaan = Kerjaan::all();
+        $kerjaan = Kerjaan::where('status', 0)->get();
         return view('kerjaan', ['kerjaan'=>$kerjaan]);
     }
 
@@ -62,14 +62,14 @@ class KerjaanController extends Controller
         $kerjaan->qty = $request->qty;
         $kerjaan->harga = $request->harga;
         $kerjaan->gaji = $gaji;
-        $kerjaan->gaji = '0';
+        $kerjaan->insentif = '0';
         $kerjaan->foto = $name_barang;
-        $kerjaan->status = '1';
+        $kerjaan->status = '0';
         $kerjaan->user_id = Auth::user()->id;
 
         $kerjaan->save();
 
-        return redirect('/kerjaan');
+        return redirect('/kerjaan')->with('alert', 'kerjaan berhasil ditambahkan');
     }
 
     /**
@@ -80,7 +80,25 @@ class KerjaanController extends Controller
      */
     public function show($id)
     {
-        //
+        $hari = date('l');
+        if($hari == 'saturday'){
+
+            $insentif = 50000;
+
+        }else{
+            $insentif = 0;
+        }
+
+        $kerjaan =  Kerjaan::find($id);
+        $kerjaan->status = '1';
+        $kerjaan->insentif = $insentif;
+        $kerjaan->user_id = Auth::user()->id;
+
+        $kerjaan->update();
+
+        return redirect('/laporan')->with('alert', 'kerjaan berhasil dipilih');
+
+        
     }
 
     /**
@@ -103,6 +121,7 @@ class KerjaanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         //
     }
 

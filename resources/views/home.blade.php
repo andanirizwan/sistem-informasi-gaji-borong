@@ -8,12 +8,6 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif                    
-
                     <div class="row">
 
                         <div class="col-md-6 ">
@@ -26,7 +20,7 @@
                                 <h4>Total Pekerjaan</h4>
                               </div>
                               <div class="card-body">
-                                10
+                                {{count($kerjaan)}}
                               </div>
                             </div>
                           </div>
@@ -42,7 +36,7 @@
                                   <h4>Sudah dikerjaan</h4>
                                 </div>
                                 <div class="card-body">
-                                  10
+                                  {{count($kerjaan2)}}
                                 </div>
                               </div>
                             </div>
@@ -67,7 +61,7 @@
                             @php
                                 date_default_timezone_set("Asia/Bangkok");
                             @endphp
-                          <input type="date" class="form-control mb-2 mr-sm-2" name="waktu" value="{{ date('Y-m-d') }}"  readonly>
+                          <input type="date" class="form-control mb-2 mr-sm-2" name="waktu" value="{{ date('Y-m-d') }}"  >
 
                             <div class="input-group mb-2 mr-sm-2">
                               <input type="text" class="form-control" name="jam_masuk" value="{{ date('H:i:s') }}" readonly>
@@ -77,6 +71,12 @@
                         </form>
                             
                     </div>
+
+                    @if (session('alert'))
+                          <div class="alert alert-warning">
+                              {{ session('alert') }}
+                          </div>
+                    @endif
 
                 </div>
             </div>
