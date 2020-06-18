@@ -61,7 +61,7 @@
                             @php
                                 date_default_timezone_set("Asia/Bangkok");
                             @endphp
-                          <input type="date" class="form-control mb-2 mr-sm-2" name="waktu" value="{{ date('Y-m-d') }}"  >
+                          <input type="date" class="form-control mb-2 mr-sm-2" name="waktu" value="{{ date('Y-m-d') }}" readonly>
 
                             <div class="input-group mb-2 mr-sm-2">
                               <input type="text" class="form-control" name="jam_masuk" value="{{ date('H:i:s') }}" readonly>

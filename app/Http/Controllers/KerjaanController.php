@@ -28,7 +28,16 @@ class KerjaanController extends Controller
      */
     public function create()
     {
-        return view('create_kerjaan');
+
+
+        if(Auth::user()->role == 'admin'){
+
+            return view('create_kerjaan');
+
+        }elseif(Auth::user()->role == 'karyawan'){
+            return redirect('/home');
+        }
+        
     }
 
     /**

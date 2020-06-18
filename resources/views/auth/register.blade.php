@@ -66,8 +66,14 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
-                            </div>
+                                <a class="btn btn-link" href="/">
+                                    Kembali ke Login
+                                </a>
+                            </div> 
+                            
+    
                         </div>
+
                     </form>
                 </div>
             </div>
