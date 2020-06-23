@@ -26,6 +26,29 @@
                           </div>
                         </div>
 
+                        @if (Auth::user()->role == 'admin')
+
+                        <div class="col-md-6 ">
+                          <div class="card card-statistic-1">
+                            <div class="card-icon bg-success">
+                              <i class="far fa-user"></i>
+                            </div>
+                            <div class="card-wrap">
+                              <div class="card-header">
+                                <h4>Total Karyawan</h4>
+                              </div>
+                              <div class="card-body">
+                                {{count($karyawan)}}
+                              </div>
+                            </div>
+                          </div>
+                        </div> 
+                       </div>
+                            
+                        @endif
+
+                        @if (Auth::user()->role == 'karyawan')
+                            
                         <div class="col-md-6 ">
                             <div class="card card-statistic-1">
                               <div class="card-icon bg-primary">
@@ -40,15 +63,16 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
-                            
+                          </div> 
                       </div>
+
+                      @endif
 
                 </div>
             </div>
         </div>
 
-
+        @if (Auth::user()->role == 'karyawan')
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header"><h4>Absensi</h4></div>
@@ -81,6 +105,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
     </div>
 </div>

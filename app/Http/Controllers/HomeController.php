@@ -31,6 +31,7 @@ class HomeController extends Controller
 
         $kerjaan = Kerjaan::where('status', 0)->get();
         $kerjaan2 = Kerjaan::where('status', 1)->where('user_id',$id)->get();
-        return view('home', ['kerjaan'=>$kerjaan, 'kerjaan2'=>$kerjaan2]);
+        $karyawan = User::where('role', 'karyawan')->get();
+        return view('home', ['kerjaan'=>$kerjaan, 'kerjaan2'=>$kerjaan2, 'karyawan'=>$karyawan]);
     }
 }

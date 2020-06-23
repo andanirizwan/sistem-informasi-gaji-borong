@@ -17,9 +17,16 @@ class AbsensiController extends Controller
      */
     public function index()
     {
+        $role = Auth::user()->role;
+
+        if($role == 'admin'){
+            $absensi = User::where('role', 'karyawan')->paginate(10);
+            return view('admin.absensi', ['absensi'=>$absensi]);
+        }
+
         $id = Auth::user()->id;
 
-        $absensi = Absensi::where('user_id',$id)->get();
+        $absensi = Absensi::where('user_id',$id)->paginate(5);
         return view('absensi', ['absensi'=>$absensi]);
     }
 
@@ -69,7 +76,8 @@ class AbsensiController extends Controller
      */
     public function show($id)
     {
-        //
+        $absensi = Absensi::where('user_id',$id)->paginate(5);
+        return view('absensi', ['absensi'=>$absensi]);
     }
 
     /**

@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('kerjaan', 'KerjaanController');
     
     Route::resource('laporan', 'LaporanController');
+    Route::get('laporan/{id}/filter', 'LaporanController@filter');
     Route::get('/profile', 'ProfileController@index'); 
 });
 

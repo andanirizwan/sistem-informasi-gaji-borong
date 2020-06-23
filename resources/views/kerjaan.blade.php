@@ -58,6 +58,8 @@
                   </tbody>
                 </table>
 
+                {{ $kerjaan->links() }}
+
                 @if (session('alert'))
                           <div class="alert alert-info">
                               {{ session('alert') }}

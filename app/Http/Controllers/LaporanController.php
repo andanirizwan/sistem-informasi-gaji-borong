@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Kerjaan;
+use App\Absensi;
 use App\User;
 
 class LaporanController extends Controller
@@ -18,6 +19,13 @@ class LaporanController extends Controller
     public function index(Request $request)
     {
         
+        $role = Auth::user()->role;
+
+        if($role == 'admin'){
+            $laporan = User::where('role', 'karyawan')->paginate(10);
+            return view('admin.laporan', ['laporan'=>$laporan]);
+        }
+
 
         $id = Auth::user()->id;
         $waktu1 = $request->waktu1;
@@ -83,7 +91,11 @@ class LaporanController extends Controller
      */
     public function show($id)
     {
-        //
+
+            $laporan = Kerjaan::where('status', 1)->where('user_id', $id)->get();
+            return view('admin.laporan_user', ['laporan'=>$laporan, 'id'=>$id]);
+
+           
     }
 
     /**
@@ -118,5 +130,34 @@ class LaporanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function filter(Request $request, $id)
+    {
+
+        $waktu1 = $request->get('waktu1');
+        $waktu2 = $request->waktu2;
+
+            $laporan = Kerjaan::where('status', 1)
+                                ->where('user_id', $id)
+                                ->whereDate('updated_at', '>=' , $waktu1)
+                                ->whereDate('updated_at', '<=' , $waktu2)
+                                ->get();
+
+            $gaji = Kerjaan::where('status', 1)
+                            ->where('user_id', $id)
+                            ->whereDate('updated_at', '>=' , $waktu1)
+                            ->whereDate('updated_at', '<=' , $waktu2)
+                            ->sum('gaji');
+            $insentif = Kerjaan::where('status', 1)
+                            ->where('user_id', $id)
+                            ->whereDate('updated_at', '>=' , $waktu1)
+                            ->whereDate('updated_at', '<=' , $waktu2)
+                            ->sum('insentif');
+
+            $total = $gaji + $insentif;
+
+            return view('admin.laporan_user', ['laporan'=>$laporan, 'total'=>$total, 'id'=>$id]);
+
     }
 }

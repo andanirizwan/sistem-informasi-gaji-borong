@@ -17,7 +17,8 @@ class KerjaanController extends Controller
      */
     public function index()
     {
-        $kerjaan = Kerjaan::where('status', 0)->get();
+
+        $kerjaan = Kerjaan::where('status', 0)->paginate(10);
         return view('kerjaan', ['kerjaan'=>$kerjaan]);
     }
 
