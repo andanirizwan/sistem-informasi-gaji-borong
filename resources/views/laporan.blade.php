@@ -54,7 +54,7 @@
                 </table>
 
                 @isset($total)
-                  <h3 class="text text-right">Total Gaji = Rp. {{$total}}</h3>
+                  <h3 class="text text-right">Total Gaji Pegawai = Rp. {{$total}}</h3>
                 @endisset
 
 
