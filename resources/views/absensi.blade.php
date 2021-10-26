@@ -23,7 +23,7 @@
                           
                       <td>{{$absensis->waktu}}</td>
                       <td>{{$absensis->jam_masuk}}</td>
-                      <td><div class="badge badge-info">Masuk</div></td>
+                      <td><div class="badge badge-success">Masuk</div></td>
                       
                     </tr>
                     @endforeach
